@@ -15,32 +15,36 @@ import { Headers, RequestOptions } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class CategoriesService {
-	remoteCat = new BehaviorSubject([]);
+export class PagesService {
+  
+	remotePages = new BehaviorSubject([]);
   
   constructor(private http: Http) {}
 
-  private categoriesUrl = "http://api-test.loc/app_dev.php/api/v1/categories";
+  private categoriesUrl = "http://api-test.loc/app_dev.php/api/v1/categories/{cat_id}/pages";
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get(this.categoriesUrl)
+  getPages(catId): Observable<Category[]> {
+    console.log(catId);
+    return this.http.get(this.categoriesUrl.replace(/{cat_id}}/, catId))
       .map(res => res.json());
   }
 
-  refresh(){
-  	let catResponse = this.http.get(this.categoriesUrl)
+  refresh(catId){
+    console.log(catId);
+    let url = this.categoriesUrl.replace(/{cat_id}/, catId);
+  	let pagesResponse = this.http.get(url)
       .map(res => res.json());
 
-    catResponse.subscribe(
+    pagesResponse.subscribe(
         (cat) => {
-          this.remoteCat.next(cat);
+          this.remotePages.next(cat);
         },
         (error) => {
           console.error(error);
         }
       );
 
-    return catResponse;
+    return pagesResponse;
   }
 
 }

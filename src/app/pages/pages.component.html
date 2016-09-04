@@ -1,0 +1,3 @@
+<div *ngFor="let page of getRemotePages() | async">
+	<li><a (click)=onSelect(page) >{{page.title}}</a> 
+</div>

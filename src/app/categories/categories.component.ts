@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { Category } from '../shared/category';
 import { Observable }     from 'rxjs/Observable';
+import { Router }              from '@angular/router';
+
 
 
 
@@ -16,10 +18,15 @@ export class CategoriesComponent implements OnInit {
 
 	categories$: Observable<Category[]>;
 
-	constructor(private categoriesService: CategoriesService) { }
+	constructor(
+    private categoriesService: CategoriesService,
+    private router: Router
+    ) { }
 
 	ngOnInit() {
-    this.categoriesService.refresh()
+    this.categoriesService.refresh();
+    // can use one of them
+    this.categories$ =  this.categoriesService.getCategories();
 		// this.getCategories();
     // console.log(this.categories);
 	}
@@ -31,12 +38,9 @@ export class CategoriesComponent implements OnInit {
   getCategories() {
     console.log('getCateg');
     this.categories$ =  this.categoriesService.getCategories();
-    // console.log(categories$);
-      // categories$.subscribe(
-      //   categories => {
-      //   this.categories = categories;
-      // }, error => console.log(error));
-
   }
 
+   onSelect(category: any) {
+    this.router.navigateByUrl(`/categories(pages:category/${category.id})`);
+  }
 }

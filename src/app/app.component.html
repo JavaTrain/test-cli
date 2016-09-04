@@ -1,10 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<top-menu></top-menu>
 
-<ul class="nav navbar-nav">
-    <li><a [routerLink]="['/categories']" routerLinkActive="active">Page</a></li>
-    <li><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-</ul>
-
-<router-outlet></router-outlet>
+<div class="cat-list">
+	<router-outlet></router-outlet>
+</div>
+<div>
+	<router-outlet name="pages"></router-outlet>
+</div>
