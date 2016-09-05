@@ -7,7 +7,7 @@ import { TopMenuComponent } from './top-menu.component';
 
 describe('Component: TopMenu', () => {
   it('should create an instance', () => {
-    let component = new TopMenuComponent();
+    let component = TopMenuComponent;
     expect(component).toBeTruthy();
   });
 });

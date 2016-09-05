@@ -26,8 +26,6 @@ export class UserService {
 		}
 	}
 
-
-
 	login(username, password) {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');

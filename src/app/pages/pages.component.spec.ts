@@ -7,7 +7,7 @@ import { PagesComponent } from './pages.component';
 
 describe('Component: Pages', () => {
   it('should create an instance', () => {
-    let component = new PagesComponent();
+    let component = PagesComponent;
     expect(component).toBeTruthy();
   });
 });
